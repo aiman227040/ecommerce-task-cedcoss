@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MegaMart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="navbar">
+  <div class="brand">🛒 MegaMart</div>
+  <div class="nav-actions">
+    <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">🌙</button>
+    <button id="cartBtn" class="cart-btn">Cart <span id="cartCount" class="cart-count">0</span></button>
+  </div>
+</div>
+
+<div class="container">
+
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <h3>Filters</h3>
+      <button id="clearFilters" class="clear-btn">Clear Filters</button>
+    </div>
+
+    <label class="field-label" for="category">Category</label>
+    <select id="category">
+      <option value="all">All Categories</option>
+      <option value="Electronics">Electronics</option>
+      <option value="Fashion">Fashion</option>
+      <option value="Home">Home</option>
+      <option value="Beauty">Beauty</option>
+      <option value="Sports">Sports</option>
+    </select>
+
+    <label class="field-label" for="rating">Rating</label>
+    <select id="rating">
+      <option value="all">All Ratings</option>
+      <option value="4">4★ & Above</option>
+      <option value="3">3★ & Above</option>
+    </select>
+
+    <div class="slider-group">
+      <div class="slider-head">
+        <span>Max Price</span>
+        <span id="priceValue" class="price-current">₹2000</span>
+      </div>
+      <input id="priceRange" type="range" min="260" max="2000" step="50" value="2000" aria-label="Maximum price filter">
+      <div class="slider-labels">
+        <span id="priceMin">₹260</span>
+        <span id="priceMax">₹2000</span>
+      </div>
+    </div>
+
+    <div class="price-buttons">
+      <button class="price-btn active" data-value="all">All prices</button>
+      <button class="price-btn" data-value="500">Below ₹500</button>
+      <button class="price-btn" data-value="1000">Below ₹1000</button>
+      <button class="price-btn" data-value="2000">Below ₹2000</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="top-controls">
+      <input type="text" id="search" class="search-box" placeholder="Search for products...">
+      <select id="sortSelect" class="sort-select" aria-label="Sort products">
+        <option value="none">Sort by</option>
+        <option value="lowHigh">Price: Low → High</option>
+        <option value="highLow">Price: High → Low</option>
+        <option value="ratingHigh">Rating: High → Low</option>
+      </select>
+    </div>
+
+    <div class="result-row">
+      <div class="result" id="resultCount"></div>
+      <div id="noResults" class="no-results">No products found 😔</div>
+    </div>
+
+    <div class="products" id="products"></div>
+
+    <div class="pagination" id="pagination">
+      <button id="prevPage" class="page-btn">Previous</button>
+      <span id="pageInfo" class="page-info"></span>
+      <button id="nextPage" class="page-btn">Next</button>
+    </div>
+  </main>
+</div>
+
+<div id="productModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <button id="modalClose" class="modal-close" aria-label="Close">×</button>
+    <img id="modalImage" class="modal-image" src="" alt="Product image">
+    <div class="modal-content">
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <div class="modal-meta">
+        <span id="modalPrice" class="modal-price"></span>
+        <span id="modalRating" class="modal-rating"></span>
+      </div>
+      <button id="modalAddToCart" class="btn add modal-add">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<div id="cartModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+  <div class="modal-card cart-card">
+    <button id="cartClose" class="modal-close" aria-label="Close">×</button>
+    <div class="modal-content">
+      <h2 id="cartTitle">Your Cart</h2>
+      <div id="cartItems" class="cart-list"></div>
+      <div class="cart-summary">
+        <span>Total:</span>
+        <strong id="cartTotal">₹0</strong>
+      </div>
+      <div class="cart-actions">
+        <button id="checkoutBtn" class="btn add">Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script src="script.js" defer></script>
+
+</body>
+</html>
